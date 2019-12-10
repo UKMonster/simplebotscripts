@@ -29,9 +29,10 @@ public class BankTask extends Task {
 				if (depositbox.click("Bank") && ctx.onCondition(() -> ctx.bank.bankOpen(),300,10)) {
 					ctx.bank.depositAllExcept("Nature rune", "Astral rune", "Earth rune", "Coins","Rune pouch");
 					SimpleItem planksB = ctx.bank.populate().filter(plankName).next();
-					planksB.click("withdraw-all");
-					if (ctx.onCondition(() -> !ctx.inventory.populate().filter(plankName).isEmpty(),300,10)){
+					if(planksB != null && planksB.click("withdraw-all")&& ctx.onCondition(() -> !ctx.inventory.populate().filter(plankName).isEmpty(),300,10)){
 						ctx.bank.closeBank();
+					} else if(planksB == null){
+						ctx.stopScript();
 					}
 				}
 			}

@@ -15,14 +15,12 @@ public class PlankMakeTask extends Task {
 	}
 	@Override
 	public boolean condition() {
-
-		return !ctx.inventory.populate().filter(plankName).isEmpty();
+		return ctx.players.getLocal().getAnimation() == -1 && !ctx.inventory.populate().filter(plankName).isEmpty();
 	}
 
 
 	@Override
 	public void run() {
-		if(ctx.players.getLocal().getAnimation() == -1){
 			SimpleItem logs = ctx.inventory.next();
 			if(logs != null){
 				if(ctx.game.tab(Tab.MAGIC)) {
@@ -31,7 +29,7 @@ public class PlankMakeTask extends Task {
 				}
 			}
 		}
-	}
+	
 
 
 	@Override
