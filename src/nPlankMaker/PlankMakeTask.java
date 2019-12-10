@@ -22,14 +22,11 @@ public class PlankMakeTask extends Task {
 	@Override
 	public void run() {
 			SimpleItem logs = ctx.inventory.next();
-			if(logs != null){
-				if(ctx.game.tab(Tab.MAGIC)) {
+			if(logs != null && ctx.game.tab(Tab.MAGIC)){
 					ctx.magic.castSpellOnItem("Plank Make", logs.getId());
 					ctx.onCondition(() -> ctx.players.getLocal().getAnimation() != -1,300,12);
 				}
 			}
-		}
-	
 
 
 	@Override
