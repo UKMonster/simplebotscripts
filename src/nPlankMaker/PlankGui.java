@@ -17,8 +17,12 @@ import java.util.Arrays;
 
 public class PlankGui extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8286519233656786765L;
 	private JPanel contentPane;
-	public  JComboBox logsBox;
+	public JComboBox<String> logsBox;
 	public JButton btnStart;
 	public JButton btnStop;
 	/**
@@ -27,6 +31,9 @@ public class PlankGui extends JFrame {
 	private NPlankMaker script;
 	public PlankGui(NPlankMaker script) {
 		this.script = script;
+		initGui();
+	}
+	private void initGui() {
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 322, 163);
@@ -36,8 +43,8 @@ public class PlankGui extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		logsBox = new JComboBox();
-		logsBox.setModel(new DefaultComboBoxModel(new String[] {"Logs", "Oak Logs", "Teak Logs", "Mahogany Logs"}));
+		logsBox = new JComboBox<String>();
+		logsBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Logs", "Oak Logs", "Teak Logs", "Mahogany Logs"}));
 		logsBox.setBounds(121, 30, 123, 20);
 		contentPane.add(logsBox);
 
