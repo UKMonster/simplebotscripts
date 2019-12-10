@@ -10,14 +10,14 @@ import simple.hooks.scripts.task.Task;
 import simple.hooks.scripts.task.TaskScript;
 import simple.hooks.simplebot.ChatMessage;
 
-@ScriptManifest(author = "Nate", category = Category.MONEYMAKING, description = "Makes Mahogany Planks!",
+@ScriptManifest(author = "Nate", category = Category.MONEYMAKING, description = "Makes Planks of your choice, start with gold + runes in inventory!",
 discord = "Nathan#6809", name = "nAIOPlankMaker", servers = {"Zenyte","Atlas" }, version = "0.1")
 
 public class NPlankMaker extends TaskScript{
 
 	public List<Task> tasks = new ArrayList<Task>();
 	public  boolean started = false;
-	private static PlankGui gui;
+	private PlankGui gui;
 	@Override
 	public void paint(Graphics arg0) {
 		// TODO Auto-generated method stub
@@ -44,10 +44,10 @@ public class NPlankMaker extends TaskScript{
 
 	@Override
 	public void onExecute() {
-		gui = new PlankGui();
+		gui = new PlankGui(this);
 		gui.setVisible(true);
 		gui.setLocale(ctx.getClient().getCanvas().getLocale());
-		
+
 		ctx.updateStatus("Started NPlankMaker!");
 
 	}
@@ -57,8 +57,10 @@ public class NPlankMaker extends TaskScript{
 	}
 	@Override
 	public void onTerminate() {
-		// TODO Auto-generated method stub
-
+		if (gui != null) {
+			gui.dispose();
+		}
 	}
-
 }
+
+

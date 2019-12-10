@@ -16,7 +16,7 @@ public class PlankMakeTask extends Task {
 	@Override
 	public boolean condition() {
 
-		return ctx.inventory.populate().filter(plankName).population() > 1;
+		return !ctx.inventory.populate().filter(plankName).isEmpty();
 	}
 
 

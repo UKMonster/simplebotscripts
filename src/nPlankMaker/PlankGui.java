@@ -25,7 +25,7 @@ public class PlankGui extends JFrame {
 	 * Create the frame.
 	 */
 	private NPlankMaker script;
-	public PlankGui() {
+	public PlankGui(NPlankMaker script) {
 		this.script = script;
 		setBackground(Color.LIGHT_GRAY);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
