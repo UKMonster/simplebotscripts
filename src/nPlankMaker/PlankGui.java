@@ -19,8 +19,8 @@ public class PlankGui extends JFrame {
 
 	private JPanel contentPane;
 	public  JComboBox logsBox;
-
-
+	public JButton btnStart;
+	public JButton btnStop;
 	/**
 	 * Create the frame.
 	 */
@@ -46,19 +46,26 @@ public class PlankGui extends JFrame {
 		lblSelectYourLog.setBounds(10, 33, 114, 14);
 		contentPane.add(lblSelectYourLog);
 
-		JButton btnStart = new JButton("Start");
+		btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				script.tasks.addAll(Arrays.asList(new BankTask(script.ctx, ((String)logsBox.getSelectedItem())), new PlankMakeTask(script.ctx, ((String)logsBox.getSelectedItem()))));// Adds our tasks to our {task} list for execution
-				script.started = true;
+				btnStart.setEnabled(false);
+				btnStop.setEnabled(false);
+				if(!script.started){
+					script.tasks.clear();
+					script.tasks.addAll(Arrays.asList(new BankTask(script.ctx, ((String)logsBox.getSelectedItem())), new PlankMakeTask(script.ctx, ((String)logsBox.getSelectedItem()))));// Adds our tasks to our {task} list for execution
+					script.started = true;
+				}
 			}
 		});
 		btnStart.setBounds(10, 87, 89, 23);
 		contentPane.add(btnStart);
 
-		JButton btnStop = new JButton("Stop");
+		btnStop = new JButton("Stop");
 		btnStop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				btnStart.setEnabled(true);
+				btnStop.setEnabled(false);
 				script.started = false;
 			}
 		});
