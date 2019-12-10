@@ -7,7 +7,7 @@ import simple.hooks.wrappers.SimpleItem;
 import simple.robot.api.ClientContext;
 
 public class PlankMakeTask extends Task {
-	
+
 	private String plankName;
 	public PlankMakeTask(ClientContext ctx, String plankName) {
 		super(ctx);

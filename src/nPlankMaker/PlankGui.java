@@ -71,5 +71,6 @@ public class PlankGui extends JFrame {
 		});
 		btnStop.setBounds(182, 87, 89, 23);
 		contentPane.add(btnStop);
+		btnStop.setEnabled(false);
 	}
 }

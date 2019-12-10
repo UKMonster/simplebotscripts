@@ -58,13 +58,13 @@ public class NAIOCutNFletch extends Script {
 			}
 		}
 	}
-	   private String properTreeName() {
-	        String selected = FletchGUI.comboTrees.getSelectedItem().toString().toLowerCase();
-	        if (selected.equals("maple")) {
-	            return "Maple tree";
-	        }
-	        return selected;
-	    }
+	private String properTreeName() {
+		String selected = FletchGUI.comboTrees.getSelectedItem().toString().toLowerCase();
+		if (selected.equals("maple")) {
+			return "Maple tree";
+		}
+		return selected;
+	}
 	public boolean logsLeft() {
 		return !ctx.inventory.populate().filter((FletchGUI.comboTrees.getSelectedItem().toString().toLowerCase()+" logs")).isEmpty();
 	}
