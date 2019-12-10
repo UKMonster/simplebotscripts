@@ -1,6 +1,5 @@
 package nPlankMaker;
 
-import nAIOCutNFletch.FletchGUI;
 import simple.hooks.scripts.task.Task;
 import simple.hooks.wrappers.SimpleItem;
 import simple.hooks.wrappers.SimpleObject;
