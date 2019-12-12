@@ -84,7 +84,7 @@ public class SmelterGui extends JFrame {
 		btnStop.setEnabled(false);
 		
 		locationBox = new JComboBox<String>();
-		locationBox.setModel(new DefaultComboBoxModel(new String[] {"Home (Zenyte)", "Al Kharid"}));
+		locationBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Home (Zenyte)", "Al Kharid"}));
 		locationBox.setBounds(121, 61, 123, 20);
 		contentPane.add(locationBox);
 		

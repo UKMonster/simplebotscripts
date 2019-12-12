@@ -3,7 +3,6 @@ package nBarSmelter;
 
 import nBarSmelter.Bars;
 import simple.hooks.scripts.task.Task;
-import simple.hooks.simplebot.Game.Tab;
 import simple.hooks.wrappers.SimpleItem;
 import simple.hooks.wrappers.SimpleObject;
 import simple.robot.api.ClientContext;
