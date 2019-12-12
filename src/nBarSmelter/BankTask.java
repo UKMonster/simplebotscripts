@@ -1,5 +1,7 @@
 package nBarSmelter;
 
+import javax.swing.JComboBox;
+
 import simple.hooks.scripts.task.Task;
 import simple.hooks.wrappers.SimpleItem;
 import simple.hooks.wrappers.SimpleObject;
@@ -8,10 +10,11 @@ import simple.robot.api.ClientContext;
 public class BankTask extends Task {
 
 	private Bars barType;
-	public BankTask(ClientContext ctx, Bars barType) {
+	private JComboBox<String> locationBox;
+	public BankTask(ClientContext ctx, Bars barType, JComboBox<String> locationBox) {
 		super(ctx);
 		this.barType = barType;
-
+		this.locationBox = locationBox;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -29,31 +32,45 @@ public class BankTask extends Task {
 				if (depositbox.click("Bank") && ctx.onCondition(() -> ctx.bank.bankOpen(),300,10)) {
 					bankItems();
 				}
+			} else { //if it cant find a deposit box walk to one
+				if(locationBox.getSelectedItem().toString() == "Home (Zenyte)"){
+					ctx.pathing.step(3032, 3440); //walk towards home bank
+					ctx.sleep(500);
+				} else {
+					ctx.pathing.step(3240,3136); //walk towards alkarid bank
+					ctx.sleep(500);
+				}
 			}
 		} else {
 			bankItems();
 		}
 	}
 
-	int itemtowithdraw1 = barType.itemsRequired[0][0];
-	int itemtowithdraw2 = barType.itemsRequired[1][0];
-	int withdrawamount1 = barType.itemsRequired[0][1];
-	int withdrawamount2 = barType.itemsRequired[1][1];
-	
+
+
 	private void bankItems() {
-		if(ctx.inventory.populate().filter(barType.productName).isEmpty()) {
-		ctx.bank.depositInventory();
+		if (!ctx.inventory.populate().filter(barType.productName).isEmpty()) { // if we have bars
+			ctx.bank.depositInventory(); // bank our inv
 		}
-		SimpleItem itemA = ctx.bank.populate().filter(itemtowithdraw1).next();
-		if(!ctx.inventory.populate().filter(itemtowithdraw1).isEmpty() && itemA != null && ctx.bank.withdraw(itemtowithdraw1, withdrawamount1)){
-			SimpleItem itemB = ctx.bank.populate().filter(itemtowithdraw2).next();
-			if(!ctx.inventory.populate().filter(itemtowithdraw2).isEmpty() && itemB != null && ctx.bank.withdraw(itemtowithdraw2, withdrawamount2)){
-				ctx.bank.closeBank();
-			} else if (itemB == null){
-				ctx.bank.closeBank();
+		final int itemtowithdraw1 = barType.itemsRequired[0][0]; // the item id of the first ore
+		if (ctx.inventory.populate().filter(itemtowithdraw1).isEmpty()) { // if we dont have any of our first item
+			SimpleItem itemA = ctx.bank.populate().filter(itemtowithdraw1).next(); // grabs the first item from our bank
+			if (itemA != null) { // if it isn't null withdraw the specified amount
+				ctx.bank.withdraw(itemtowithdraw1, barType.itemsRequired[0][1]); // withdraws our first item x amount
+			} else { // if we dont have any of our first item
+				ctx.stopScript(); // stop the script
 			}
-		} else if(itemA == null){
-			ctx.stopScript();
+		}
+		if (barType.itemsRequired.length > 1) { // if our specified bar has more than 1 ore required to make it
+			final int itemtowithdraw2 = barType.itemsRequired[1][0]; // the item id of the second ore
+			if (ctx.inventory.populate().filter(itemtowithdraw2).isEmpty()) { // if we dont have any of our second ore in our bank
+				SimpleItem itemB = ctx.bank.populate().filter(itemtowithdraw2).next(); // grabs the second item from our bank
+				if (itemB != null && ctx.bank.withdraw(itemtowithdraw2, barType.itemsRequired[1][1])) { // if it isnt null and we withdrew it
+					ctx.bank.closeBank(); // close the bank
+				}
+			}
+		} else { // if we only have 1 ore type to withdraw
+			ctx.bank.closeBank(); // close the bank
 		}
 	}
 	@Override

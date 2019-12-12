@@ -47,7 +47,6 @@ public class NBarSmelter extends TaskScript{
 		gui = new SmelterGui(this);
 		gui.setVisible(true);
 		gui.setLocale(ctx.getClient().getCanvas().getLocale());
-
 		ctx.updateStatus("Started nBarSmelter!");
 
 	}

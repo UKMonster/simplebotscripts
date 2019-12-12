@@ -23,6 +23,7 @@ public class SmelterGui extends JFrame {
 	private static final long serialVersionUID = 8286519233656786765L;
 	private JPanel contentPane;
 	public JComboBox<Bars> barBox;
+	public JComboBox<String> locationBox;
 	public JButton btnStart;
 	public JButton btnStop;
 	/**
@@ -44,7 +45,6 @@ public class SmelterGui extends JFrame {
 		contentPane.setLayout(null);
 
 		barBox = new JComboBox<Bars>(new DefaultComboBoxModel<Bars>(Bars.values()));
-		Bars barType = (Bars) barBox.getSelectedItem();
 		//barBox = new JComboBox<Bars>();
 		//barBox.setModel(new DefaultComboBoxModel<Bars>(new String[] {"Bronze Bar", "Iron Bar", "Steel Bar", "Gold Bar", "Mithril Bar", "Adamant Bar", "Runite Bar"}));
 		barBox.setBounds(121, 30, 123, 20);
@@ -58,11 +58,12 @@ public class SmelterGui extends JFrame {
 		btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Bars barType = (Bars) barBox.getSelectedItem();
 				btnStart.setEnabled(false);
 				btnStop.setEnabled(false);
 				if(!script.started){
 					script.tasks.clear();
-					script.tasks.addAll(Arrays.asList(new BankTask(script.ctx, (barType)), new BarSmeltTask(script.ctx, (barType))));// Adds our tasks to our {task} list for execution
+					script.tasks.addAll(Arrays.asList(new BankTask(script.ctx, (barType), locationBox), new BarSmeltTask(script.ctx, (barType))));// Adds our tasks to our {task} list for execution
 					script.started = true;
 				}
 			}
@@ -81,5 +82,15 @@ public class SmelterGui extends JFrame {
 		btnStop.setBounds(182, 87, 89, 23);
 		contentPane.add(btnStop);
 		btnStop.setEnabled(false);
+		
+		locationBox = new JComboBox<String>();
+		locationBox.setModel(new DefaultComboBoxModel(new String[] {"Home (Zenyte)", "Al Kharid"}));
+		locationBox.setBounds(121, 61, 123, 20);
+		contentPane.add(locationBox);
+		
+		JLabel lblSelectLocation = new JLabel("Select location -");
+		lblSelectLocation.setForeground(Color.WHITE);
+		lblSelectLocation.setBounds(35, 64, 89, 14);
+		contentPane.add(lblSelectLocation);
 	}
 }
