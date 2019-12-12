@@ -10,8 +10,8 @@ import simple.hooks.scripts.task.Task;
 import simple.hooks.scripts.task.TaskScript;
 import simple.hooks.simplebot.ChatMessage;
 
-@ScriptManifest(author = "Nate", category = Category.MONEYMAKING, description = "Makes Planks of your choice, start with gold + runes in inventory!",
-discord = "Nathan#6809", name = "nAIOPlankMaker", servers = {"Zenyte","Atlas" }, version = "0.1")
+@ScriptManifest(author = "Nate", category = Category.SMITHING, description = "Makes Bars of your choice!",
+discord = "Nathan#6809", name = "nAIOBarSmelter", servers = {"Zenyte","Atlas" }, version = "0.1")
 
 public class NBarSmelter extends TaskScript{
 
