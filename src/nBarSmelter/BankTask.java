@@ -21,7 +21,7 @@ public class BankTask extends Task {
 	@Override
 	public boolean condition() {
 		// TODO Auto-generated method stub
-		return ctx.inventory.populate().filter(barType.productName).population() >= barType.barsPerInv;
+		return ctx.inventory.populate().filter(barType.productName).population() >= barType.barsPerInv || ctx.inventory.populate().isEmpty();
 	}
 
 	@Override

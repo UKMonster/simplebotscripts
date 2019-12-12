@@ -24,17 +24,23 @@ public class BarSmeltTask extends Task {
 	public void run() {
 		SimpleItem ores = ctx.inventory.populate().filter(barType.itemsRequired[0][0]).next();
 		if(ores != null){
+			ctx.updateStatus("Found Ores..");
 			SimpleObject furnace = ctx.objects.populate().filter("furnace").nextNearest();
 			if(furnace != null){
+				ctx.updateStatus("Found Furnace..");
 				ores.click("use");
 				ctx.sleep(500);
 				furnace.click("use");
 				ctx.onCondition(() -> ctx.dialogue.dialogueOpen(),250,20);
+				ctx.updateStatus("Waiting for dialogue box...");
 				if(ctx.dialogue.dialogueOpen()){
-					ctx.dialogue.clickDialogueOption(barType.dialogueOption);
+					ctx.updateStatus("Found Dialogue box...");
+					ctx.sleep(500);
+					ctx.keyboard.clickKey(barType.dialogueOption);
 					ctx.onCondition(() -> ctx.inventory.populate().filter(barType.productName).population() == barType.barsPerInv,500,60);
 				}
 			} else {
+				ctx.updateStatus("Running to furnace..");
 				ctx.pathing.step(3216,3112);
 				ctx.sleep(500);
 			}
