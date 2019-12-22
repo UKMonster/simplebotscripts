@@ -20,11 +20,11 @@ public class FishTask extends Task {
 	@Override
 	public void run() {
 		if(ctx.players.getLocal().getAnimation() == -1){
-			SimpleNpc fishspot = ctx.npcs.populate().filter("Fishing spot").nextNearest();
+			SimpleNpc fishspot = ctx.npcs.populate().filter("Fishing spot").nearest().next();
 			if(fishspot != null){
 				if(fishspot.validateInteractable()){
 					fishspot.click("Net");
-					ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() != -1,16000);
+					ctx.onCondition(() -> ctx.players.getLocal().getAnimation() != -1,160,100);
 				}
 			}
 		}

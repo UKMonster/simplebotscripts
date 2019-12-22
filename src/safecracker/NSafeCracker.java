@@ -22,19 +22,19 @@ public class NSafeCracker extends Script {
 	}
 
 	public void onProcess() {
-		SimpleObject wallsafe = ctx.objects.populate().filter("wall safe").nextNearest();
+		SimpleObject wallsafe = ctx.objects.populate().filter("wall safe").nearest().next();
 		SimpleItem lobster = ctx.inventory.populate().filter("lobster").next();
 		if (wallsafe != null) {
 			if (!ctx.inventory.inventoryFull()) {
 				if (ctx.combat.health() > 7) {
 					if (wallsafe.validateInteractable()) {
 						wallsafe.click("crack");
-						ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() != -1);
-						ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() == -1);
+						ctx.onCondition(() -> ctx.players.getLocal().getAnimation() != -1,250,20);
+						ctx.onCondition(() -> ctx.players.getLocal().getAnimation() == -1,250,20);
 						ctx.sleep(3500);
 					}
 					else {
-						ctx.sleepCondition(() -> wallsafe.visibleOnScreen());
+						ctx.onCondition(() -> wallsafe.visibleOnScreen());
 					}
 				}
 				else if (lobster != null) {
@@ -55,10 +55,10 @@ public class NSafeCracker extends Script {
 
 	public void bankNow() {
 		ctx.pathing.step(3048, 4970);
-		SimpleObject bank = ctx.objects.populate().filter("bank chest").nextNearest();
-		ctx.sleepCondition(() -> bank.visibleOnScreen());
+		SimpleObject bank = ctx.objects.populate().filter("bank chest").nearest().next();
+		ctx.onCondition(() -> bank.visibleOnScreen(),250,20);
 		bank.click("use");
-		ctx.sleepCondition(() -> ctx.bank.bankOpen(), 15000);
+		ctx.onCondition(() -> ctx.bank.bankOpen(), 1500,10);
 		if (ctx.bank.bankOpen()) {
 			ctx.bank.depositInventory();
 			ctx.sleep(1000);

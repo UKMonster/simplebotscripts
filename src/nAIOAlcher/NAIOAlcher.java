@@ -42,8 +42,8 @@ public class NAIOAlcher extends Script{
 						ctx.mouse.click(741, 185, true);//ctx.interfaces.openTab(SimpleWidgets.MAGIC_TAB);
 						ctx.sleep(250);
 						ctx.magic.castSpellOnItem("high level alchemy", diamondid);
-						ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() != -1,1750);
-						ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() == -1,1750);
+						ctx.onCondition(() -> ctx.players.getLocal().getAnimation() != -1,1750);
+						ctx.onCondition(() -> ctx.players.getLocal().getAnimation() == -1,1750);
 
 					} else {
 						ctx.updateStatus("Out of Items to Alch");

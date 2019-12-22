@@ -20,11 +20,11 @@ public class MineTask extends Task {
 	@Override
 	public void run() {
 		if(ctx.players.getLocal().getAnimation() == -1){
-			SimpleObject essence = ctx.objects.populate().filter("Rune Essence").nextNearest();
+			SimpleObject essence = ctx.objects.populate().filter("Rune Essence").nearest().next();
 			if(essence != null){
 				if(essence.validateInteractable()){
 					essence.click("Mine");
-					ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() != -1,6000);
+					ctx.onCondition(() -> ctx.players.getLocal().getAnimation() != -1,100,60);
 				}
 			}
 		}

@@ -24,7 +24,7 @@ public class BankTask extends Task{
 	@Override
 	public void run() {
 		ctx.sleep(600);
-		SimpleNpc bank = ctx.npcs.populate().filter("Banker").nextNearest();
+		SimpleNpc bank = ctx.npcs.populate().filter("Banker").nearest().next();
 		if(bank != null){
 			if(bank.validateInteractable()){
 				bank.click("bank");

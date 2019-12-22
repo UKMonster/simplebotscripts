@@ -25,7 +25,7 @@ public class CannonGUI extends JFrame {
 	 */
 	public CannonGUI() {
 		setTitle("AIO CannonBalls");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 295, 130);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);

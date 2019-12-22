@@ -22,7 +22,7 @@ public class DropTask extends Task {
 	@Override
 	public void run() {
 		if(ctx.inventory.populate().population() > 3){
-			for(int i=-10; i<ctx.inventory.populate().population(); i++){
+			for(int i=-28; i<ctx.inventory.populate().population(); i++){
 				SimpleItem todrop = ctx.inventory.populate().filter("Raw Salmon","Raw Trout","Raw Rainbowfish").next();
 				ctx.keyboard.pressKey(KeyEvent.VK_SHIFT);
 				todrop.click(0);

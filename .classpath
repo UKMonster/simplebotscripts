@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Users/Muppet/.simplebot/apis/zenyte/Simplebot-Api-1.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Muppet/.simplebot/clients/zenyte/zenyte-client-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Muppet/.simplebot/frameworks/zenyte/Simplebot-Framework-1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Muppet/.simplebot/apis/zenyte/Simplebot-Api-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Muppet/.simplebot/clients/zenyte/zenyte-client-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Muppet/.simplebot/frameworks/zenyte/Simplebot-Framework-2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

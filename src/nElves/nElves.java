@@ -52,12 +52,12 @@ public class nElves extends Script {
 			hptoeat = Integer.parseInt(ElvesGUI.hpField.getText());
 			String food = ElvesGUI.comboFood.getSelectedItem().toString().toLowerCase();
 			//System.out.println("location: "+ location);
-			int runenergy = ctx.getContext().getRunEnergy();
+			/*int runenergy = ctx.game.getRunEnergy();
 			if(runenergy > 50) {
 				if(!ctx.getContext().runActive()) {
 					ctx.getContext().toggleRun();
 				}
-			}
+			}*/
 			if(ctx.inventory.populate().filter("coin pouch").population() > 20){
 				SimpleItem pouch = ctx.inventory.populate().filter("coin pouch").next();
 				ctx.game.tab(Tab.INVENTORY);
@@ -75,7 +75,7 @@ public class nElves extends Script {
 				foodID = 385;
 			}
 
-			if(ctx.inventory.populate().inventoryFull()) {
+			if(ctx.inventory.populate().population() > 27) {
 				ctx.updateStatus("Inventory full..");
 				if(ElvesGUI.chckbxAlchDiamonds.isSelected()){
 					SimpleItem diamonds = ctx.inventory.populate().filter("diamond").next();
@@ -121,7 +121,7 @@ public class nElves extends Script {
 					bank();
 				}
 			} else {
-				SimpleNpc elves = ctx.npcs.populate().filter(elvesID).nextNearest();
+				SimpleNpc elves = ctx.npcs.populate().filter(elvesID).nearest().next();
 				if(elves.validateInteractable()){
 					elves.click("pickpocket");
 					ctx.updateStatus("Pickpocketing..");
@@ -147,7 +147,7 @@ public class nElves extends Script {
 		ctx.sleep(1000);
 		ctx.pathing.step(2350,3157);
 		ctx.sleep(2500);
-		SimpleObject bank = ctx.objects.populate().filter(bankID).nextNearest();
+		SimpleObject bank = ctx.objects.populate().filter(bankID).nearest().next();
 		if(bank.validateInteractable()){
 			ctx.updateStatus("Finding bank..");
 			//ctx.objects.clickOnMinimap(bank);

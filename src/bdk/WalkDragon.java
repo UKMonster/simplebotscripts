@@ -18,7 +18,7 @@ public class WalkDragon extends Task {
 
 	@Override
 	public boolean condition() {
-		SimpleNpc bdrag = ctx.npcs.populate().filter("Blue Dragon").nextNearest();
+		SimpleNpc bdrag = ctx.npcs.populate().filter("Blue Dragon").nearest().next();
 		return !bdrag.validateInteractable();
 	}
 
@@ -27,7 +27,7 @@ public class WalkDragon extends Task {
 		if (homearea.containsPoint(ctx.players.getLocal().getLocation())) {
 			ctx.pathing.step(3092,3497);
 			ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() == -1,6000);
-			SimpleObject portal = ctx.objects.populate().filter(34657).nextNearest();
+			SimpleObject portal = ctx.objects.populate().filter(34657).nearest().next();
 			if(portal != null){
 				if(portal.validateInteractable()){
 					portal.click("Teleport-previous");

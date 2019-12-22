@@ -25,7 +25,7 @@ public class KillTask extends Task {
 	@Override
 	public void run() {
 		if(!ctx.players.getLocal().inCombat()){
-			//SimpleNpc bdrag = ctx.npcs.populate().filter("Blue Dragon").filter((npc) -> !npc.inCombat() && !npc.isDead()).nextNearest();
+			//SimpleNpc bdrag = ctx.npcs.populate().filter("Blue Dragon").filter((npc) -> !npc.inCombat() && !npc.isDead()).nearest().next();
 			 SimpleNpc fightingMe = ctx.npcs.populate().filter(new Predicate<SimpleNpc>() {
 	                @Override
 	                public boolean test(SimpleNpc n) {
@@ -34,7 +34,7 @@ public class KillTask extends Task {
 	                    }
 	                    return n.inCombat() && n.getInteracting() != null && n.getInteracting().equals(ctx.players.getLocal().getPlayer());
 	                }
-	            }).nextNearest();
+	            }).nearest().next();
 	            SimpleNpc bdrag = fightingMe != null ? fightingMe : ctx.npcs.populate().filter("Blue Dragon").filter(new Predicate<SimpleNpc>() {
 	                @Override
 	                public boolean test(SimpleNpc n) {
@@ -46,7 +46,7 @@ public class KillTask extends Task {
 	                    }
 	                    return true;
 	                }
-	            }).nextNearest();
+	            }).nearest().next();
 			if(bdrag != null){
 				if(bdrag.validateInteractable()){
 					bdrag.click("Attack");

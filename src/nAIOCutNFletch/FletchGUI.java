@@ -21,7 +21,7 @@ public class FletchGUI extends JFrame {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public FletchGUI() {
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("AIO Cut'n'Fletch");
 		setBounds(100, 100, 334, 129);
 		contentPane = new JPanel();

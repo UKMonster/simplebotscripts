@@ -49,11 +49,11 @@ public class NMasterFarmerDrop extends Script{
 				dropSeeds();
 				//return;
 			} else {
-				SimpleNpc farmer = ctx.npcs.populate().filter(farmerID).nextNearest();
+				SimpleNpc farmer = ctx.npcs.populate().filter(farmerID).nearest().next();
 				if(farmer.validateInteractable()){
 					farmer.click("pickpocket");
-					ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() != -1);
-					ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() == -1);
+					ctx.onCondition(() -> ctx.players.getLocal().getAnimation() != -1,100,30);
+					ctx.onCondition(() -> ctx.players.getLocal().getAnimation() == -1,100,30);
 				}
 			}
 		}
@@ -81,7 +81,7 @@ public class NMasterFarmerDrop extends Script{
 		final String[] seedNames = getFormattedSeedNames();
 		//System.out.println(seedNames);
 		for (SimpleItem item : ctx.inventory.populate()) {
-			final String name = this.ctx.getDefinitions().getItemDefinition(item.getId()).getName().toLowerCase();
+			final String name = this.ctx.definitions.getItemDefinition(item.getId()).getName().toLowerCase();
 			if (dropSeed(name)) {
 				System.out.println("Dropping "+name+" format name ");
 				item.click("drop");

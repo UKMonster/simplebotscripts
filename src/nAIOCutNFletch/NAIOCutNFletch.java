@@ -31,7 +31,7 @@ public class NAIOCutNFletch extends Script {
 		if(startedbot == 1) {
 			if(!ctx.dialogue.dialogueOpen()){
 				if(!ctx.inventory.inventoryFull()) {
-					SimpleObject tree = ctx.objects.populate().filter(properTreeName()).nextNearest();
+					SimpleObject tree = ctx.objects.populate().filter(properTreeName()).nearest().next();
 					if(tree != null){
 						if(tree.validateInteractable()){
 							tree.click("chop down");

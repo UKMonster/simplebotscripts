@@ -36,8 +36,8 @@ public class NSuperHeat extends Script {
 					ctx.game.tab(Tab.MAGIC); //opens magic tab
 					ctx.sleep(250);
 					ctx.magic.castSpellOnItem("superheat item", item.getId());
-					ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() != -1,2500);
-					ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() == -1,2500);
+					ctx.onCondition(() -> ctx.players.getLocal().getAnimation() != -1,250,10);
+					ctx.onCondition(() -> ctx.players.getLocal().getAnimation() == -1,250,10);
 				}
 			} else {
 					bank();
@@ -55,10 +55,10 @@ public class NSuperHeat extends Script {
 	}
 
 	public void bank() {
-		SimpleNpc bank = ctx.npcs.populate().filter("banker").nextNearest();
+		SimpleNpc bank = ctx.npcs.populate().filter("banker").nearest().next();
 		if(bank.validateInteractable()){
 			bank.click("bank");
-			ctx.sleepCondition(()-> ctx.bank.bankOpen());
+			ctx.onCondition(()-> ctx.bank.bankOpen(),250,20);
 			ctx.sleep(300);
 			SimpleItem barbank = ctx.inventory.populate().filter("gold bar").next();
 			barbank.click("deposit-all");

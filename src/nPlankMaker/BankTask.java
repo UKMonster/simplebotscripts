@@ -24,7 +24,7 @@ public class BankTask extends Task {
 	@Override
 	public void run() {
 		 if(!ctx.bank.bankOpen()){
-	            SimpleObject depositbox = ctx.objects.populate().filter("Grand Exchange Booth","bank booth").nextNearest();
+	            SimpleObject depositbox = ctx.objects.populate().filter("Grand Exchange Booth","bank booth").nearest().next();
 	            if(depositbox != null && depositbox.validateInteractable()){
 	                if (depositbox.click("Bank") && ctx.onCondition(() -> ctx.bank.bankOpen(),300,10)) {
 	                    bankItems();

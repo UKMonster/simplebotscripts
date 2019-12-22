@@ -25,7 +25,7 @@ public class BarSmeltTask extends Task {
 		SimpleItem ores = ctx.inventory.populate().filter(barType.itemsRequired[0][0]).next();
 		if(ores != null){
 			ctx.updateStatus("Found Ores..");
-			SimpleObject furnace = ctx.objects.populate().filter("furnace").nextNearest();
+			SimpleObject furnace = ctx.objects.populate().filter("furnace").nearest().next();
 			if(furnace != null){
 				ctx.updateStatus("Found Furnace..");
 				ores.click("use");

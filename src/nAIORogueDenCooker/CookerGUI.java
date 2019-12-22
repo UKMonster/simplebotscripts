@@ -13,6 +13,10 @@ import java.awt.event.ActionEvent;
 
 public class CookerGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public static JComboBox fishBox;
 

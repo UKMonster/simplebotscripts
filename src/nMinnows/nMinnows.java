@@ -44,7 +44,7 @@ public class nMinnows extends Script{
 				if(spot.validateInteractable()){
 					spot.click("Small Net");
 					ctx.sleep(500);
-					ctx.sleepCondition(()-> ctx.players.getLocal().getAnimation() == -1,4500);
+					ctx.onCondition(()-> ctx.players.getLocal().getAnimation() == -1,450,10);
 				}
 			}
 		}
@@ -53,7 +53,7 @@ public class nMinnows extends Script{
 
 	public SimpleNpc getClosestMinnowSpot(){
 		ctx.updateStatus("Finding new spot...");
-		return ctx.npcs.populate().filter(nMinnows.MINNOW_SPOTS).nextNearest();
+		return ctx.npcs.populate().filter(nMinnows.MINNOW_SPOTS).nearest().next();
 		
 	}
 	

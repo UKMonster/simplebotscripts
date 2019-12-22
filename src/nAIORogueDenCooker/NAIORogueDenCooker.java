@@ -53,7 +53,7 @@ public class NAIORogueDenCooker extends Script {
 	public void onProcess() {
 		if(started == true){
 			if (uncookedFoodLeft()) {
-				SimpleObject fire = ctx.objects.populate().filter("fire").nextNearest();
+				SimpleObject fire = ctx.objects.populate().filter("fire").nearest().next();
 				if (fire.validateInteractable()) {
 					SimpleItem shark = ctx.inventory.populate().filter("raw " +CookerGUI.fishBox.getSelectedItem().toString().toLowerCase()).next();
 					if (shark != null) {
@@ -63,16 +63,16 @@ public class NAIORogueDenCooker extends Script {
 						ctx.sleep(3000);
 						ctx.mouse.click(257, 428, true);
 						ctx.sleep(250);
-						ctx.sleepCondition((() -> !uncookedFoodLeft()), 68000);
+						ctx.onCondition((() -> !uncookedFoodLeft()), 250,280);
 					}
 				}
 			} else {
-				SimpleObject bank = ctx.objects.populate().filter("bank chest").nextNearest();
+				SimpleObject bank = ctx.objects.populate().filter("bank chest").nearest().next();
 				ctx.sleep(500);
 				if (bank.validateInteractable()) {;
 				ctx.sleep(500);
 				bank.click("use");
-				ctx.sleepCondition(() -> ctx.bank.bankOpen());
+				ctx.onCondition(() -> ctx.bank.bankOpen(),125,30);
 				ctx.sleep(300);
 				ctx.bank.depositInventory();
 				ctx.sleep(200);

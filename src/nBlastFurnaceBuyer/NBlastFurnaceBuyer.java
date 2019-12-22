@@ -38,11 +38,11 @@ public class NBlastFurnaceBuyer extends Script{
 	public void onProcess() {
 		if(buying == 1){
 			SimpleItem coins = ctx.inventory.populate().filter(coinID).next();
-			SimpleNpc shop = ctx.npcs.populate().filter(shopID).nextNearest();
+			SimpleNpc shop = ctx.npcs.populate().filter(shopID).nearest().next();
 			if(!ctx.inventory.inventoryFull()) {
 				if(shop.validateInteractable()){
 					shop.click("trade");
-					ctx.sleepCondition(()-> ctx.shop.shopOpen());
+					ctx.onCondition(()-> ctx.shop.shopOpen(),250,30);
 					ctx.sleep(400);
 					SimpleItem shopore = ctx.shop.populate().filter((BlastGUI.itemName.getSelectedItem().toString().toLowerCase())).next();
 					if(coins != null){
@@ -53,12 +53,12 @@ public class NBlastFurnaceBuyer extends Script{
 					}
 				}
 			} else {
-				SimpleObject depositBox = ctx.objects.populate().filter("bank chest").nextNearest();
+				SimpleObject depositBox = ctx.objects.populate().filter("bank chest").nearest().next();
 				ctx.pathing.step(1948,4957);
 				ctx.sleep(600);
 				if(depositBox.validateInteractable()) {
 					depositBox.click("use");
-					ctx.sleepCondition(()-> ctx.bank.bankOpen());
+					ctx.onCondition(()-> ctx.bank.bankOpen(),250,30);
 					SimpleItem depositOres = ctx.inventory.populate().filter((BlastGUI.itemName.getSelectedItem().toString().toLowerCase())).next();
 					depositOres.click("deposit-all");
 					ctx.sleep(500);

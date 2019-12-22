@@ -81,18 +81,18 @@ public class NAIOCannonBalls extends Script {
 						ctx.sleep(2400);
 						ctx.pathing.step(3109,3498);
 						ctx.sleep(2400);
-						SimpleObject furnace = ctx.objects.populate().filter("furnace").nextNearest();
+						SimpleObject furnace = ctx.objects.populate().filter("furnace").nearest().next();
 						if(furnace != null){
 							if(furnace.validateInteractable()){
 								statusatm = "using bars on furnace";
 								steelbars.click("use");
 								ctx.sleep(1200);
 								furnace.click("use");
-								ctx.sleepCondition(() -> ctx.dialogue.dialogueOpen());
+								ctx.onCondition(() -> ctx.dialogue.dialogueOpen(),300,30);
 								ctx.sleep(1000);
 								ctx.mouse.click(257, 428, true);
 								statusatm = "Smelting Bars";
-								ctx.sleepCondition(() -> ctx.inventory.populate().filter("steel bar").isEmpty(), 98000);
+								ctx.onCondition(() -> ctx.inventory.populate().filter("steel bar").isEmpty(), 300,330);
 							}
 						} else {
 							ctx.pathing.step(3109,3498);
@@ -102,16 +102,16 @@ public class NAIOCannonBalls extends Script {
 						statusatm = "Walking to bank";
 						ctx.pathing.step(3099,3498);
 						ctx.sleep(300);
-						SimpleNpc bank = ctx.npcs.populate().filter("banker").nextNearest();
+						SimpleNpc bank = ctx.npcs.populate().filter("banker").nearest().next();
 						if(bank.validateInteractable()){
 							ctx.sleep(800);
 							bank.click("bank");
-							ctx.sleepCondition(() -> ctx.bank.bankOpen());
+							ctx.onCondition(() -> ctx.bank.bankOpen(),300,25);
 							if(ctx.bank.bankOpen()){
 								SimpleItem banksteel = ctx.bank.populate().filter("steel bar").next();
 								if(banksteel.validateInteractable()){
 									statusatm = "Finding steel";
-									ctx.sleepCondition(() -> banksteel.visibleOnScreen());
+									ctx.onCondition(() -> banksteel.visibleOnScreen(),250,20);
 									banksteel.click("withdraw-all");
 									ctx.sleep(150);
 									ctx.bank.closeBank();
@@ -131,24 +131,24 @@ public class NAIOCannonBalls extends Script {
 					SimpleItem steelbars = ctx.inventory.populate().filter("steel bar").next();
 					if(steelbars != null){
 						ctx.sleep(300);
-						SimpleObject furnace = ctx.objects.populate().filter(29662).nextNearest();
+						SimpleObject furnace = ctx.objects.populate().filter(29662).nearest().next();
 						statusatm = "Walking to Furnace";
 						ctx.pathing.step(2856,2962);
-						ctx.sleep(1000);
-						if(furnace.validateInteractable()){
+						ctx.sleep(750);
+						if(furnace != null && furnace.validateInteractable()){
 							statusatm = "Using bars on Furnace";
-							ctx.sleep(600);
+							ctx.sleep(900);
 							steelbars.click("use");
-							ctx.sleep(600);
-							furnace.click("use");
-							ctx.sleepCondition(() -> ctx.dialogue.dialogueOpen());
+							ctx.sleep(900);
+							furnace.click(0);
+							ctx.onCondition(() -> ctx.dialogue.dialogueOpen(),250,20);
 							ctx.mouse.click(257, 428, true);
 							ctx.sleep(1200);
 							statusatm = "Smelting Bars..";
-							ctx.sleepCondition(() -> ctx.inventory.populate().filter("steel bar").isEmpty(), 98000);
+							ctx.onCondition(() -> ctx.inventory.populate().filter("steel bar").isEmpty(), 300,330);
 						}
 					} else {
-						SimpleNpc bank = ctx.npcs.populate().filter("banker").nextNearest();
+						SimpleNpc bank = ctx.npcs.populate().filter("banker").nearest().next();
 						statusatm = "Finding Bank";
 						ctx.sleep(600);
 						ctx.pathing.step(2856,2962);
@@ -157,12 +157,12 @@ public class NAIOCannonBalls extends Script {
 							ctx.sleep(300);
 							bank.click("bank");
 							statusatm = "Opening Bank";
-							ctx.sleepCondition(() -> ctx.bank.bankOpen());
+							ctx.onCondition(() -> ctx.bank.bankOpen(),300,20);
 							if(ctx.bank.bankOpen()){
 								SimpleItem banksteel = ctx.bank.populate().filter("steel bar").next();
 								if(banksteel.validateInteractable()){
 									statusatm = "Finding Steel Bars";
-									ctx.sleepCondition(() -> banksteel.visibleOnScreen());
+									ctx.onCondition(() -> banksteel.visibleOnScreen(),300,20);
 									banksteel.click("withdraw-all");
 									ctx.sleep(150);
 									ctx.bank.closeBank();

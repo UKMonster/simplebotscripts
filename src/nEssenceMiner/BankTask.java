@@ -20,15 +20,15 @@ public class BankTask extends Task {
 	@Override
 	public void run() {
 		if(!ctx.bank.depositBoxOpen()){
-			SimpleObject depositbox = ctx.objects.populate().filter("Bank deposit box").nextNearest();
+			SimpleObject depositbox = ctx.objects.populate().filter("Bank deposit box").nearest().next();
 			if(depositbox != null){
 				if(depositbox.validateInteractable()){
 					ctx.sleep(300);
 					depositbox.click("Deposit");
-					ctx.sleepCondition(() -> ctx.bank.depositBoxOpen(),6000);
+					ctx.onCondition(() -> ctx.bank.depositBoxOpen(),600,10);
 					if(ctx.bank.depositBoxOpen() == true){
 						ctx.bank.depositInventory();
-						ctx.sleepCondition(() -> ctx.inventory.populate().isEmpty(),5000);
+						ctx.onCondition(() -> ctx.inventory.populate().isEmpty(),500,10);
 						ctx.bank.closeBank();
 					}
 				}
