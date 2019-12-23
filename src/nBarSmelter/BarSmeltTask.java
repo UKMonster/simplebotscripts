@@ -49,7 +49,7 @@ public class BarSmeltTask extends Task {
 
 	private boolean haveItemsToSmelt(Bars bar) {
 		for (int[] items : bar.itemsRequired) {
-			if (ctx.inventory.populate().filter(items[0]).population() < items[1] * bar.barsPerInv) {
+			if (ctx.inventory.populate().filter(items[0]).population() < items[1]) {
 				return false;
 			}
 		}
