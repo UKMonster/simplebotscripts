@@ -26,14 +26,15 @@ public class NAIOAlcher extends Script{
 		gui.setLocale(ctx.getClient().getCanvas().getLocale());
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void onProcess() {
 		if(startedbot == 1) {
-			if(gui.itemNameField.getText().equals("")) {//if blank
+			if(GUI.itemNameField.getText().equals("")) {//if blank
 				return;
 			}
 
-			SimpleItem diamond = ctx.inventory.populate().filter(gui.itemNameField.getText().toLowerCase()).next();
+			SimpleItem diamond = ctx.inventory.populate().filter(GUI.itemNameField.getText().toLowerCase()).next();
 			int diamondid = diamond.getId();
 			SimpleItem nature = ctx.inventory.populate().filter("nature rune").next();
 			if(ctx.game.tab(Tab.MAGIC)){

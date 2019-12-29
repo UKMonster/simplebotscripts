@@ -1,6 +1,7 @@
 package nBlastFurnaceBuyer;
 
 import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,13 +14,18 @@ import javax.swing.DefaultComboBoxModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
 public class BlastGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public static JComboBox itemName;
+	public static JComboBox<String> itemName;
 
 
 	/**
@@ -33,10 +39,10 @@ public class BlastGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		itemName = new JComboBox();
+		itemName = new JComboBox<String>();
 		itemName.setBackground(new Color(192, 192, 192));
 		itemName.setForeground(Color.BLACK);
-		itemName.setModel(new DefaultComboBoxModel(new String[] {"Copper ore", "Tin ore", "Iron ore", "Mithril ore", "Silver ore", "Gold ore", "Coal"}));
+		itemName.setModel(new DefaultComboBoxModel<String>(new String[] {"Copper ore", "Tin ore", "Iron ore", "Mithril ore", "Silver ore", "Gold ore", "Coal"}));
 		itemName.setBounds(102, 76, 89, 20);
 		contentPane.add(itemName);
 		

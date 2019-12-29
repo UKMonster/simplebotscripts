@@ -3,20 +3,28 @@ package nElves;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.DefaultComboBoxModel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextField;
 
 
 public class ElvesGUI extends JFrame {
 
-	public static JComboBox comboFood;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public static JComboBox<String> comboFood;
 	public static JCheckBox chckbxAlchDiamonds;
 	private JPanel contentPane;
 	public static JTextField hpField;
@@ -51,8 +59,8 @@ public class ElvesGUI extends JFrame {
 		btnStop.setBounds(199, 105, 89, 25);
 		contentPane.add(btnStop);
 		
-		comboFood = new JComboBox();
-		comboFood.setModel(new DefaultComboBoxModel(new String[] {"Tuna", "Lobster", "Monkfish", "Shark"}));
+		comboFood = new JComboBox<String>();
+		comboFood.setModel(new DefaultComboBoxModel<String>(new String[] {"Tuna", "Lobster", "Monkfish", "Shark"}));
 		comboFood.setBounds(105, 11, 140, 23);
 		contentPane.add(comboFood);
 		

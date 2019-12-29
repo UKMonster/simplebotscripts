@@ -3,11 +3,14 @@ package nAIORogueDenCooker;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -18,7 +21,7 @@ public class CookerGUI extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public static JComboBox fishBox;
+	public static JComboBox<String> fishBox;
 
 	/**
 	 * Create the frame.
@@ -32,8 +35,8 @@ public class CookerGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		fishBox = new JComboBox();
-		fishBox.setModel(new DefaultComboBoxModel(new String[] {"Shrimp", "Trout", "Salmon", "Tuna", "Lobster", "Swordfish", "Monkfish", "Shark", "Manta Ray", "Anglerfish"}));
+		fishBox = new JComboBox<String>();
+		fishBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Shrimp", "Trout", "Salmon", "Tuna", "Lobster", "Swordfish", "Monkfish", "Shark", "Manta Ray", "Anglerfish"}));
 		fishBox.setBounds(71, 34, 188, 20);
 		contentPane.add(fishBox);
 		

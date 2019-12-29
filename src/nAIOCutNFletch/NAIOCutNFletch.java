@@ -35,7 +35,7 @@ public class NAIOCutNFletch extends Script {
 					if(tree != null){
 						if(tree.validateInteractable()){
 							tree.click("chop down");
-							ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() == -1,9000);
+							ctx.onCondition(() -> ctx.players.getLocal().getAnimation() == -1,9000);
 							ctx.sleep(2000);
 						}
 					} else {
@@ -49,7 +49,7 @@ public class NAIOCutNFletch extends Script {
 					logs.click(1);
 					ctx.sleep(400);
 					ctx.mouse.click(52,424,true);
-					ctx.sleepCondition((() -> !logsLeft()), 68000);
+					ctx.onCondition((() -> !logsLeft()), 68000);
 				}
 			}  else {
 				ctx.sleep(500);

@@ -21,38 +21,39 @@ public class CraftTask extends Task {
 	}
 
 	public void walkfromBank() {
+		ctx.sleep(2000);
 		ctx.pathing.step(3381, 3269);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3381, 3269, 0)) < 3, 300,10);
 		ctx.pathing.step(3382, 3268);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3382, 3268, 0)) < 3, 300,10);
 		ctx.pathing.step(3383, 3266);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3383, 3266, 0)) < 3, 300,10);
 		ctx.pathing.step(3374, 3264);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3374, 3264, 0)) < 3, 300,10);
 		ctx.pathing.step(3366, 3263);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3366, 3263, 0)) < 3, 300,10);
 		ctx.pathing.step(3359, 3263);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3359, 3263, 0)) < 3, 00,10);
 		ctx.pathing.step(3348, 3264);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3348, 3264, 0)) < 3, 300,10);
 		ctx.pathing.step(3338, 3265);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3326, 3263, 0)) < 3, 300,10);
 		ctx.pathing.step(3326, 3263);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3326, 3263, 0)) < 3, 300,10);
 		ctx.pathing.step(3325, 3258);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3325, 3258, 0)) < 3, 300,10);
 		ctx.pathing.step(3324, 3249);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3324, 3249, 0)) < 3, 300,10);
 		ctx.pathing.step(3323, 3242);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3324, 3242, 0)) < 3, 300,10);
 		ctx.pathing.step(3317, 3233);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3317, 3233, 0)) < 3, 300,10);
 		ctx.pathing.step(3306, 3234);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3306, 3234, 0)) < 3, 300,10);
 		ctx.pathing.step(3307, 3239);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3307, 3239, 0)) < 3, 300,10);
 		ctx.pathing.step(3309, 3246);
-		ctx.sleep(2000);
+		ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3309, 3246, 0)) < 3, 300,10);
 		ctx.pathing.step(3312, 3250);
 		ctx.sleep(2000);
 	}

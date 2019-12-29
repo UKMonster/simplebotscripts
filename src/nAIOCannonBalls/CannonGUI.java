@@ -17,8 +17,12 @@ import javax.swing.DefaultComboBoxModel;
 
 public class CannonGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public static JComboBox comboBox;
+	public static JComboBox<String> comboBox;
 
 	/**
 	 * Create the frame.
@@ -58,8 +62,8 @@ public class CannonGUI extends JFrame {
 		btnStop.setBounds(197, 49, 62, 23);
 		contentPane.add(btnStop);
 		
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Home", "Shilo"}));
+		comboBox = new JComboBox<String>();
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Home", "Shilo"}));
 		comboBox.setBounds(96, 11, 118, 20);
 		contentPane.add(comboBox);
 		

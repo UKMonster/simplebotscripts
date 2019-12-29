@@ -57,7 +57,7 @@ public class PlankGui extends JFrame {
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnStart.setEnabled(false);
-				btnStop.setEnabled(false);
+				btnStop.setEnabled(true);
 				if(!script.started){
 					script.tasks.clear();
 					script.tasks.addAll(Arrays.asList(new BankTask(script.ctx, ((String)logsBox.getSelectedItem())), new PlankMakeTask(script.ctx, ((String)logsBox.getSelectedItem()))));// Adds our tasks to our {task} list for execution

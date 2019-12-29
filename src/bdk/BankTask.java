@@ -28,10 +28,10 @@ public class BankTask extends Task{
 		if(bank != null){
 			if(bank.validateInteractable()){
 				bank.click("bank");
-				ctx.sleepCondition(() -> ctx.bank.bankOpen(),6000);
+				ctx.onCondition(() -> ctx.bank.bankOpen(),6000);
 				if(ctx.bank.bankOpen()){
 					ctx.bank.depositInventory();
-					ctx.sleepCondition(() -> ctx.inventory.populate().population() < 0,6000);
+					ctx.onCondition(() -> ctx.inventory.populate().population() < 0,6000);
 					SimpleItem mantaray = ctx.bank.populate().filter("manta ray").next();
 					if(mantaray != null){
 						mantaray.click("withdraw-10");

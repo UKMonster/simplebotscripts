@@ -107,7 +107,6 @@ public class NAIORogueDenCooker extends Script {
 	@Override
 	public void paint(Graphics g) {
 		timeRan = System.currentTimeMillis() - this.timeBegan;
-		Graphics gr = g;
 		if (!hidePaint) {
 			g.drawImage(bg, -2, 315, null);
 			g.drawString(ft(timeRan), 115, 396);

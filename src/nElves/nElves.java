@@ -20,7 +20,7 @@ discord = "Nathan#6809", name = "NElves", servers = { "Zenyte"}, version = "1.52
 
 public class nElves extends Script {
 
-	private long timeRan;
+
 	private long timeBegan;
 	public static int elvesID = 5297;
 	public static int foodID = 361;
@@ -91,7 +91,7 @@ public class nElves extends Script {
 								ctx.game.tab(Tab.MAGIC);
 								ctx.sleep(300);
 								ctx.magic.castSpellOnItem("high level alchemy", item.getId());
-								ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() != -1,2500);
+								ctx.onCondition(() -> ctx.players.getLocal().getAnimation() != -1,2500);
 								if(ctx.onCondition(() -> ctx.players.getLocal().getAnimation() == -1,2500)) {
 									ctx.game.tab(Tab.MAGIC);
 								}
@@ -125,8 +125,8 @@ public class nElves extends Script {
 				if(elves.validateInteractable()){
 					elves.click("pickpocket");
 					ctx.updateStatus("Pickpocketing..");
-					ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() != -1,3500);
-					ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() == -1,3500);
+					ctx.onCondition(() -> ctx.players.getLocal().getAnimation() != -1,3500);
+					ctx.onCondition(() -> ctx.players.getLocal().getAnimation() == -1,3500);
 				}
 			}
 		}
@@ -151,10 +151,10 @@ public class nElves extends Script {
 		if(bank.validateInteractable()){
 			ctx.updateStatus("Finding bank..");
 			//ctx.objects.clickOnMinimap(bank);
-			//ctx.sleepCondition(()-> ctx.objects.visibleOnScreen(bank));
+			//ctx.onCondition(()-> ctx.objects.visibleOnScreen(bank));
 			//ctx.sleep(1000);
 			bank.click("bank");
-			ctx.sleepCondition(()-> ctx.bank.bankOpen());
+			ctx.onCondition(()-> ctx.bank.bankOpen());
 			ctx.sleep(500);
 			ctx.bank.depositInventory();
 			ctx.sleep(3000);

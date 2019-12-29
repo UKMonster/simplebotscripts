@@ -12,6 +12,10 @@ import java.awt.event.ActionEvent;
 
 public class GUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static JPanel contentPane;
 	public static JTextField itemNameField;
 

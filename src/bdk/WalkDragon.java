@@ -26,7 +26,7 @@ public class WalkDragon extends Task {
 	public void run() {
 		if (homearea.containsPoint(ctx.players.getLocal().getLocation())) {
 			ctx.pathing.step(3092,3497);
-			ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() == -1,6000);
+			ctx.onCondition(() -> ctx.players.getLocal().getAnimation() == -1,6000);
 			SimpleObject portal = ctx.objects.populate().filter(34657).nearest().next();
 			if(portal != null){
 				if(portal.validateInteractable()){
@@ -34,7 +34,7 @@ public class WalkDragon extends Task {
 				}
 			} else {
 				ctx.pathing.step(3096,3501);
-				ctx.sleepCondition(() -> ctx.players.getLocal().getAnimation() == -1,6000);
+				ctx.onCondition(() -> ctx.players.getLocal().getAnimation() == -1,6000);
 			}
 		} else {
 			ctx.updateStatus("teleported - going through pipe");
@@ -42,7 +42,7 @@ public class WalkDragon extends Task {
 			if(pipe != null){
 				if(pipe.validateInteractable()){
 					pipe.click("Squeeze-through");
-					ctx.sleepCondition(() -> ctx.players.getLocal().getLocation().getX() == 2892,8000);
+					ctx.onCondition(() -> ctx.players.getLocal().getLocation().getX() == 2892,8000);
 					ctx.updateStatus("Through pipe - running safe spot");
 					//ctx.pathing.walkPath(new Point[]{new Point(2903,9804), new Point(2902,9809)});
 				}

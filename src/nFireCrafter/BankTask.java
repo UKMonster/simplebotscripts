@@ -20,42 +20,50 @@ public class BankTask extends Task {
 		return ctx.inventory.populate().filter("Pure essence").isEmpty();
 	}
 
-public void walkbank(){
-		    ctx.pathing.step(3312, 3250);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3309, 3246, 0)) < 3, 600,10);
-		    ctx.pathing.step(3309, 3246);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3307, 3239, 0)) < 3, 600,10);
-		    ctx.pathing.step(3307, 3239);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3306, 3234, 0)) < 3, 600,10);
-		    ctx.pathing.step(3306, 3234);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3317, 3233, 0)) < 3, 600,10);
-		    ctx.pathing.step(3317, 3233);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3324, 3242, 0)) < 3, 600,10);
-		    ctx.pathing.step(3323, 3242);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3324, 3249, 0)) < 3, 600,10);
-		    ctx.pathing.step(3324, 3249);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3325, 3258, 0)) < 3, 600,10);
-		    ctx.pathing.step(3325, 3258);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3326, 3263, 0)) < 3, 600,10);
-		    ctx.pathing.step(3326, 3263);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3326, 3263, 0)) < 3, 600,10);
-		    ctx.pathing.step(3338, 3265);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3348, 3264, 0)) < 3, 600,10);
-		    ctx.pathing.step(3348, 3264);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3359, 3263, 0)) < 3, 600,10);
-		    ctx.pathing.step(3359, 3263);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3366, 3263, 0)) < 3, 600,10);
-		    ctx.pathing.step(3366, 3263);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3374, 3264, 0)) < 3, 600,10);
-		    ctx.pathing.step(3374, 3264);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3383, 3266, 0)) < 3, 600,10);
-		    ctx.pathing.step(3383, 3266);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3382, 3268, 0)) < 3, 600,10);
-		    ctx.pathing.step(3382, 3268);
-		    ctx.onCondition(() -> ctx.players.getLocal().getLocation().distanceTo(new WorldPoint(3381, 3269, 0)) < 3, 600,10);
-		    ctx.pathing.step(3381, 3269);
-		    ctx.sleep(2000);
-		};
+
+	public WorldPoint[] getPath() {
+		return new WorldPoint[]{
+				new WorldPoint(3312, 3250, 0),
+				new WorldPoint(3310, 3246, 0),
+				new WorldPoint(3307, 3239, 0),
+				new WorldPoint(3306, 3234, 0),
+				new WorldPoint(3317, 3233, 0),
+				new WorldPoint(3323, 3242, 0),
+				new WorldPoint(3324, 3249, 0),
+				new WorldPoint(3325, 3258, 0),
+				new WorldPoint(3326, 3263, 0),
+				new WorldPoint(3338, 3265, 0),
+				new WorldPoint(3348, 3264, 0),
+				new WorldPoint(3359, 3263, 0),
+				new WorldPoint(3366, 3263, 0),
+				new WorldPoint(3374, 3264, 0),
+				new WorldPoint(3383, 3266, 0),
+				new WorldPoint(3382, 3268, 0),
+				new WorldPoint(3381, 3269, 0)};
+	}
+
+
+	/*	public void walkbank(){ 
+
+		ctx.pathing.step(3312, 3250);
+		ctx.pathing.step(3309, 3246);
+		ctx.pathing.step(3307, 3239);
+		ctx.pathing.step(3306, 3234);
+		ctx.pathing.step(3317, 3233);
+		ctx.pathing.step(3323, 3242);
+		ctx.pathing.step(3324, 3249);
+		ctx.pathing.step(3325, 3258);
+		ctx.pathing.step(3326, 3263);
+		ctx.pathing.step(3338, 3265);
+		ctx.pathing.step(3348, 3264);
+		ctx.pathing.step(3359, 3263);
+		ctx.pathing.step(3366, 3263);
+		ctx.pathing.step(3374, 3264);
+		ctx.pathing.step(3383, 3266);
+		ctx.pathing.step(3382, 3268);
+		ctx.pathing.step(3381, 3269);
+		ctx.sleep(2000);
+	};*/
 
 	private final WorldArea portalArea = new WorldArea(new WorldPoint(2570, 4853, 0), new WorldPoint(2596, 4823, 0));
 	private final WorldArea ruinsArea = new WorldArea(new WorldPoint(3309, 3250, 0), new WorldPoint(3318, 3260, 0));
@@ -76,7 +84,8 @@ public void walkbank(){
 		}
 		if(ctx.pathing.inArea(ruinsArea)){
 			ctx.updateStatus("Running to bank");
-			walkbank();
+			//walkbank();
+			ctx.pathing.walkPath(getPath());
 			ctx.sleep(7500);
 		}
 		if(ctx.pathing.inArea(bankArea)){
@@ -89,8 +98,8 @@ public void walkbank(){
 					ctx.onCondition(()-> !ctx.inventory.populate().filter("Pure Essence").isEmpty());
 				}
 			}
-				
-			
+
+
 		}
 	}
 

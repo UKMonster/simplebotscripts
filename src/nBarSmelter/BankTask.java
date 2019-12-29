@@ -56,7 +56,7 @@ public class BankTask extends Task {
 		if (ctx.inventory.populate().filter(itemtowithdraw1).isEmpty()) { // if we dont have any of our first item
 			SimpleItem itemA = ctx.bank.populate().filter(itemtowithdraw1).next(); // grabs the first item from our bank
 			if (itemA != null) { // if it isn't null withdraw the specified amount
-				ctx.bank.withdraw(itemtowithdraw1, barType.itemsRequired[0][1]); // withdraws our first item x amount
+				ctx.bank.withdraw(itemtowithdraw1, (barType.itemsRequired[0][1] * barType.barsPerInv)); // withdraws our first item x amount
 			} else { // if we dont have any of our first item
 				ctx.stopScript(); // stop the script
 			}
@@ -65,7 +65,7 @@ public class BankTask extends Task {
 			final int itemtowithdraw2 = barType.itemsRequired[1][0]; // the item id of the second ore
 			if (ctx.inventory.populate().filter(itemtowithdraw2).isEmpty()) { // if we dont have any of our second ore in our bank
 				SimpleItem itemB = ctx.bank.populate().filter(itemtowithdraw2).next(); // grabs the second item from our bank
-				if (itemB != null && ctx.bank.withdraw(itemtowithdraw2, barType.itemsRequired[1][1])) { // if it isnt null and we withdrew it
+				if (itemB != null && ctx.bank.withdraw(itemtowithdraw2, (barType.itemsRequired[1][1] * barType.barsPerInv))) { // if it isnt null and we withdrew it
 					ctx.bank.closeBank(); // close the bank
 				}
 			}

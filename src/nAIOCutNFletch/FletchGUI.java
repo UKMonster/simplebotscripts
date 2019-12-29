@@ -13,8 +13,12 @@ import javax.swing.DefaultComboBoxModel;
 
 public class FletchGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public static JComboBox comboTrees;
+	public static JComboBox<String> comboTrees;
 
 	/**
 	 * Create the frame.

@@ -36,7 +36,7 @@ public class BarSmeltTask extends Task {
 				if(ctx.dialogue.dialogueOpen()){
 					ctx.updateStatus("Found Dialogue box...");
 					ctx.sleep(500);
-					ctx.keyboard.clickKey(barType.dialogueOption);
+					ctx.keyboard.sendKeys(barType.dialogueOption);
 					ctx.onCondition(() -> ctx.inventory.populate().filter(barType.productName).population() == barType.barsPerInv,500,60);
 				}
 			} else {

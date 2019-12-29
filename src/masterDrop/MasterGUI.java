@@ -4,9 +4,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.JComboBox;
@@ -14,9 +16,13 @@ import javax.swing.DefaultComboBoxModel;
 
 public class MasterGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public static JTextPane seedList1;
-	public static JComboBox locationBox;
+	public static JComboBox<String> locationBox;
 
 	/**
 	 * Create the frame.
@@ -59,9 +65,9 @@ public class MasterGUI extends JFrame {
 		seedList1.setBounds(35, 62, 161, 264);
 		contentPane.add(seedList1);
 		
-		locationBox = new JComboBox();
+		locationBox = new JComboBox<String>();
 		locationBox.setBackground(Color.LIGHT_GRAY);
-		locationBox.setModel(new DefaultComboBoxModel(new String[] {"Draynor", "Zeah", "Ardy"}));
+		locationBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Draynor", "Zeah", "Ardy"}));
 		locationBox.setToolTipText("");
 		locationBox.setBounds(76, 6, 145, 20);
 		contentPane.add(locationBox);

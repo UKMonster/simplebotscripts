@@ -50,12 +50,12 @@ public class KillTask extends Task {
 			if(bdrag != null){
 				if(bdrag.validateInteractable()){
 					bdrag.click("Attack");
-					ctx.sleepCondition(() -> ctx.players.getLocal().inCombat(),4000);
+					ctx.onCondition(() -> ctx.players.getLocal().inCombat(),4000);
 					ctx.pathing.step(2900,9809);
-					ctx.sleepCondition(() -> ctx.players.getLocal().getLocation().getX() == 2900 && ctx.players.getLocal().getLocation().getY() == 9809,4500);
+					ctx.onCondition(() -> ctx.players.getLocal().getLocation().getX() == 2900 && ctx.players.getLocal().getLocation().getY() == 9809,4500);
 					bdrag.validateInteractable();
 					bdrag.click("Attack");
-					ctx.sleepCondition(() -> !ctx.players.getLocal().inCombat(),60000);
+					ctx.onCondition(() -> !ctx.players.getLocal().inCombat(),60000);
 				}
 			}
 		}

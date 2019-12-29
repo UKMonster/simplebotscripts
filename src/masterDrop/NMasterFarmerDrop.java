@@ -67,7 +67,6 @@ public class NMasterFarmerDrop extends Script{
 
 	public boolean dropSeed(String itemName) {
 		final String[] seedNames = getFormattedSeedNames();
-		boolean r;
 		for (String seed : seedNames) {
 			seed = seed.toLowerCase();
 			if (itemName.contains(seed.toLowerCase())) {
@@ -78,7 +77,6 @@ public class NMasterFarmerDrop extends Script{
 	}
 
 	private void dropSeeds() {	
-		final String[] seedNames = getFormattedSeedNames();
 		//System.out.println(seedNames);
 		for (SimpleItem item : ctx.inventory.populate()) {
 			final String name = this.ctx.definitions.getItemDefinition(item.getId()).getName().toLowerCase();
