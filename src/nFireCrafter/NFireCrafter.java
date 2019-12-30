@@ -1,7 +1,6 @@
 package nFireCrafter;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,8 +14,8 @@ import simple.hooks.scripts.task.Task;
 import simple.hooks.scripts.task.TaskScript;
 import simple.hooks.simplebot.ChatMessage;
 
-@ScriptManifest(author = "Nate", category = Category.RUNECRAFTING, description = "Crafts mfking Fire runes!",
-discord = "Nathan#6809", name = "nFireCrafter", servers = {"Zenyte" }, version = "0.1")
+@ScriptManifest(author = "Nate", category = Category.RUNECRAFTING, description = "Crafts Fire runes in Al-karid! Start either near the mysterious runes or duel arena bank. make sure talisman is in inventory",
+discord = "Nathan#6809", name = "nFireCrafter", servers = {"Zenyte","Atlas" }, version = "0.1")
 
 public class NFireCrafter extends TaskScript{
 	
@@ -53,8 +52,10 @@ public class NFireCrafter extends TaskScript{
 	 
 	@Override
 	public void paint(Graphics g) {
-        Font font = new Font("Java Kick BTN",Font.BOLD,16);
-        g.setFont(font);
+		g.setColor(Color.WHITE);
+		g.fillRect(7, 195, 130, 130);
+		g.setColor(Color.RED);
+		g.drawRect(7, 195, 130, 130);
         g.setColor(Color.RED);
         timeRan = System.currentTimeMillis() - this.timeBegan;
         g.drawString("nFireRCrafter",12,210);

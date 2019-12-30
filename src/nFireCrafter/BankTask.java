@@ -19,7 +19,7 @@ public class BankTask extends Task {
 		// TODO Auto-generated method stub
 		return ctx.inventory.populate().filter("Pure essence").isEmpty();
 	}
-
+	String statusScript = "Banking";
 
 	public WorldPoint[] getPath() {
 		return new WorldPoint[]{
@@ -27,11 +27,13 @@ public class BankTask extends Task {
 				new WorldPoint(3310, 3246, 0),
 				new WorldPoint(3307, 3239, 0),
 				new WorldPoint(3306, 3234, 0),
+				new WorldPoint(3313, 3233, 0),
 				new WorldPoint(3317, 3233, 0),
 				new WorldPoint(3323, 3242, 0),
 				new WorldPoint(3324, 3249, 0),
 				new WorldPoint(3325, 3258, 0),
 				new WorldPoint(3326, 3263, 0),
+				new WorldPoint(3331, 3263, 0),
 				new WorldPoint(3338, 3265, 0),
 				new WorldPoint(3348, 3264, 0),
 				new WorldPoint(3359, 3263, 0),
@@ -66,28 +68,25 @@ public class BankTask extends Task {
 	};*/
 
 	private final WorldArea portalArea = new WorldArea(new WorldPoint(2570, 4853, 0), new WorldPoint(2596, 4823, 0));
-	private final WorldArea ruinsArea = new WorldArea(new WorldPoint(3309, 3250, 0), new WorldPoint(3318, 3260, 0));
 	private final WorldArea bankArea = new WorldArea(new WorldPoint(3380, 3266, 0), new WorldPoint(3385, 3273, 0));
 
 
 
 	@Override
 	public void run() {
+		if(!ctx.pathing.running() && ctx.pathing.energyLevel() > 50 ){
+			ctx.pathing.running(true);
+		}
 		if (ctx.pathing.inArea(portalArea)) {
 			SimpleObject portal = ctx.objects.populate().filter("Portal").nearest().next();
 			if(!ctx.inventory.populate().filter("Fire rune").isEmpty() && ctx.players.getLocal().getAnimation() == -1 && portal != null) {
 				portal.validateInteractable();
-				ctx.updateStatus("Teleporting out..");
+				statusScript =("Teleporting out..");
 				portal.click("Use");
 				ctx.sleep(5000);
 			}
 		}
-		if(ctx.pathing.inArea(ruinsArea)){
-			ctx.updateStatus("Running to bank");
-			//walkbank();
-			ctx.pathing.walkPath(getPath());
-			ctx.sleep(7500);
-		}
+
 		if(ctx.pathing.inArea(bankArea)){
 			SimpleObject bank = ctx.objects.populate().filter("open chest").nearest().next();
 			if(bank != null && bank.validateInteractable()){
@@ -100,13 +99,18 @@ public class BankTask extends Task {
 			}
 
 
+		} else {
+			statusScript =("Running to bank");
+			//walkbank();
+			ctx.pathing.walkPath(getPath());
 		}
 	}
+
 
 	@Override
 	public String status() {
 		// TODO Auto-generated method stub
-		return "Banking..";
+		return statusScript;
 	}
 
 }
