@@ -36,7 +36,7 @@ public class CookerGUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		fishBox = new JComboBox<String>();
-		fishBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Shrimp", "Trout", "Salmon", "Tuna", "Lobster", "Swordfish", "Monkfish", "Shark", "Manta Ray", "Anglerfish"}));
+		fishBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Shrimps", "Trout", "Salmon", "Tuna", "Lobster", "Swordfish", "Monkfish", "Shark", "Manta Ray", "Anglerfish"}));
 		fishBox.setBounds(71, 34, 188, 20);
 		contentPane.add(fishBox);
 		

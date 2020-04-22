@@ -33,7 +33,7 @@ public class BankTask extends Task {
 				new WorldPoint(3324, 3249, 0),
 				new WorldPoint(3325, 3258, 0),
 				new WorldPoint(3326, 3263, 0),
-				new WorldPoint(3331, 3263, 0),
+				new WorldPoint(3331, 3265, 0),
 				new WorldPoint(3338, 3265, 0),
 				new WorldPoint(3348, 3264, 0),
 				new WorldPoint(3359, 3263, 0),

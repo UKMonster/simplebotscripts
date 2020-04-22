@@ -23,7 +23,7 @@ public class NSafeCracker extends Script {
 
 	public void onProcess() {
 		SimpleObject wallsafe = ctx.objects.populate().filter("wall safe").nearest().next();
-		SimpleItem lobster = ctx.inventory.populate().filter("lobster").next();
+		SimpleItem lobster = ctx.inventory.populate().filter("trout").next();
 		if (wallsafe != null) {
 			if (!ctx.inventory.inventoryFull()) {
 				if (ctx.combat.health() > 7) {
@@ -62,7 +62,7 @@ public class NSafeCracker extends Script {
 		if (ctx.bank.bankOpen()) {
 			ctx.bank.depositInventory();
 			ctx.sleep(1000);
-			SimpleItem lobsterbank = ctx.bank.populate().filter("lobster").next();
+			SimpleItem lobsterbank = ctx.bank.populate().filter("trout").next();
 			if (lobsterbank != null) {
 				lobsterbank.click("withdraw-x");
 				ctx.sleep(1500);
@@ -75,7 +75,7 @@ public class NSafeCracker extends Script {
 				ctx.game.tab(Tab.INVENTORY);
 			}
 			else {
-				ctx.updateStatus("Out of Lobsters");
+				ctx.updateStatus("Out of trout");
 				onTerminate();
 			}
 		}

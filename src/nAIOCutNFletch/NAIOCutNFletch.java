@@ -10,7 +10,7 @@ import simple.hooks.wrappers.SimpleObject;
 import simple.robot.script.Script;
 
 @ScriptManifest(author = "Nate", category = Category.WOODCUTTING, description = "Cuts trees and then fletches them into arrow shafts start near trees and have a knife in inv",
-discord = "Nathan#6809", name = "NAIO CutnFletch", servers = { "Zenyte" }, version = "0.15")
+discord = "Nathan#6809", name = "NAIO CutnFletch", servers = { "Zenyte","Novea","Battlescape","Kodai" }, version = "0.15")
 
 public class NAIOCutNFletch extends Script {
 

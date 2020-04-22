@@ -23,11 +23,8 @@ public class BankTask extends Task {
 	public void run() {
 		if(!ctx.bank.depositBoxOpen()){
 			ctx.pathing.step(new WorldPoint(2329,3689,0));
-			//ctx.sleep(5500);
 			SimpleNpc depositbox = ctx.npcs.populate().filter("Arnold Lydspor").nearest().next();
-			if(depositbox != null){
-				if(depositbox.validateInteractable()){
-					ctx.sleep(300);
+			if(depositbox != null && depositbox.validateInteractable() ){
 					depositbox.click("bank");
 					ctx.onCondition(() -> ctx.bank.bankOpen(),600,10);
 					if(ctx.bank.bankOpen() == true){
@@ -38,7 +35,6 @@ public class BankTask extends Task {
 						}
 						ctx.bank.closeBank();
 					}
-				}
 			}
 		}
 	}

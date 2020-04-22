@@ -9,7 +9,7 @@ import simple.hooks.wrappers.SimpleNpc;
 import simple.robot.script.Script;
 
 @ScriptManifest(author = "Nate", category = Category.FISHING, description = "Fishes Minnows - start with net in inv",
-discord = "Nathan#6809", name = "NMinnows", servers = {"Zenyte"}, version = "0.1")
+discord = "Nathan#6809", name = "NMinnows", servers = {"Zenyte", "Novea"}, version = "0.1")
 
 public class nMinnows extends Script{
 	
@@ -54,6 +54,7 @@ public class nMinnows extends Script{
 	public SimpleNpc getClosestMinnowSpot(){
 		ctx.updateStatus("Finding new spot...");
 		return ctx.npcs.populate().filter(nMinnows.MINNOW_SPOTS).nearest().next();
+		
 		
 	}
 	

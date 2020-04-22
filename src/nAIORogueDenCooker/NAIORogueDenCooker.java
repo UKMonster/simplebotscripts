@@ -119,9 +119,9 @@ public class NAIORogueDenCooker extends Script {
 	public void onChatMessage(ChatMessage message) {
 		String msg = message.message;
 		if(msg.contains("successfully cook the")){
-			sharkscooked += 1;
+			sharkscooked++;
 		} else if(msg.contains("burnt")){
-			sharksburnt += 1; 
+			sharksburnt++; 
 		}
 	}
 
